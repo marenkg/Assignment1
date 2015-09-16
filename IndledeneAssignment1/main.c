@@ -15,18 +15,18 @@ int main(int argc, char *argv[]) {
 	short xArrayL[13] = {0};//Low pass
 	long count = 0;
 	short yArrayL[3] = {0};
-	short xArrayH[33] = {0};
+	short xArrayH[33] = {0};//High pass
 	short yArrayH[2] = {0};
-	short xArrayD[5] = {0};
+	short xArrayD[5] = {0};//Derivative
 	short toSquare = 0;
-	short xArrayM[30] = {0};
+	short xArrayM[30] = {0};//Moving window intergation
 	short result;
 
 	for(int i = 0; i < 100; i++){
 		//Setup
 		int nextData = getNextData(file); //Load next data point
 		printf("%d, ", nextData); //print data point
-		xArrayL[(count+13)%13]=nextData; //Assign nextData to the array
+		xArrayL[(count)%13]=nextData; //Assign nextData to the array
 
 		//Low pass
 		yArrayL[(count)%3] = 2 * yArrayL[(count-1+3)%3] - yArrayL[(count-2+3)%3] + (xArrayL[(count)%13]-2 * xArrayL[(count-6+13)%13] + xArrayL[(count-12+13)%13])/32;
