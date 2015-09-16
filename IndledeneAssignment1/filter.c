@@ -15,7 +15,7 @@ int filter(int data){
 	static short xArrayM[30] = {0}; //Moving window
 	short result;					//Result
 
-	xArrayL[(count+13)%13]=data; //Assign nextData to the array
+	xArrayL[(count)%13]=data; //Assign nextData to the array
 
 	//Low pass
 	yArrayL[(count)%3] = 2 * yArrayL[(count-1+3)%3] - yArrayL[(count-2+3)%3] + (xArrayL[(count)%13]-2 * xArrayL[(count-6+13)%13] + xArrayL[(count-12+13)%13])/32;
